@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''hostname
 date
-systemctl status jenkins
+
 
 '''
       }

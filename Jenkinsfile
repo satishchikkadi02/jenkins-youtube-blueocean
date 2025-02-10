@@ -3,8 +3,10 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh '''pwd
+        sh '''hostname
 date
+systemctl status jenkins
+
 '''
       }
     }
@@ -13,13 +15,13 @@ date
       parallel {
         stage('test') {
           steps {
-            echo 'test step from blue ocean'
+            echo 'This is new code from blue ocean on test'
           }
         }
 
         stage('test par') {
           steps {
-            echo 'test par'
+            echo 'Code test parallelly '
           }
         }
 
@@ -28,8 +30,14 @@ date
 
     stage('deploy') {
       steps {
-        echo 'deploy'
-        sleep 10
+        echo 'Deploy on prod if all ok in test'
+        sleep 5
+      }
+    }
+
+    stage('print all') {
+      steps {
+        mail(subject: 'Deployment successful', body: 'Hi, Test is successful', from: 'satish.chikkadi@gmail.com', to: 'satish.chikkadi@gmail.com', charset: 'successful')
       }
     }
 

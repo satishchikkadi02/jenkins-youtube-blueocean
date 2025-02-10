@@ -35,11 +35,5 @@ systemctl status jenkins
       }
     }
 
-    stage('print all') {
-      steps {
-        mail(subject: 'Deployment successful', body: 'Hi, Test is successful', from: 'satish.chikkadi@gmail.com', to: 'satish.chikkadi@gmail.com', charset: 'successful')
-      }
-    }
-
   }
 }
